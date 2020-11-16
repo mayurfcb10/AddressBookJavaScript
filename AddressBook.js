@@ -1,16 +1,6 @@
 
 class ContactDetails {
-
-    // property
-    firstName;
-    lastName;
-    address;
-    city;
-    state;
-    email;
-    zip;
-    phoneNumber;
-
+    
     // Constructor
     constructor(...params) {
         this.firstName = params[0];
@@ -29,7 +19,11 @@ class ContactDetails {
     }
 
     set firstName(firstName) {
-        this._firstName = this.firstName;
+        let firstNameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');
+        if (firstNameRegex.test(firstName)) {
+            this._firstName = this.firstName;
+        } else
+            throw 'FirstName should start with capital letter and alteast 3 characters';
     }
 
     get lastName() {
@@ -37,7 +31,11 @@ class ContactDetails {
     }
 
     set lastName(lastName) {
-        this._lastName = this.lastName;
+        let lastNameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');
+        if (lastNameRegex.test(lastName)) {
+            this._lastName = this.lastName;
+        } else
+            throw 'LastName should start with capital letter and alteast 3 characters';
     }
 
     get address() {
@@ -45,7 +43,11 @@ class ContactDetails {
     }
 
     set address(address) {
-        this._address = this.lastName;
+        let addressRegex = RegExp('^[A-Za-z0-9 ]{4,}$');
+        if (addressRegex.test(address)) {
+            this._address = this.address;
+        } else
+            throw 'Address should have alteast 4 characters';
     }
 
     get city() {
@@ -53,7 +55,11 @@ class ContactDetails {
     }
 
     set city(city) {
-        this._city = this.city;
+        let cityRegex = RegExp('^[A-Za-z ]{4,}$');
+        if (cityRegex.test(city)) {
+            this._city = this.city;
+        } else
+            throw 'City should have alteast 4 characters';
     }
 
     get state() {
@@ -61,7 +67,11 @@ class ContactDetails {
     }
 
     set state(state) {
-        this._state = this.state;
+        let stateRegex = RegExp('^[A-Za-z ]{4,}$');
+        if (stateRegex.test(state)) {
+            this._state = this.state;
+        } else
+            throw 'State should have alteast 4 characters';
     }
 
     get email() {
@@ -69,7 +79,11 @@ class ContactDetails {
     }
 
     set email(email) {
-        this._email = this.email;
+        let emailRegex = RegExp("^[a-zA-Z0-9]{1,}[-+._][a-zA-Z0-9]{0,}@[a-zA-Z]{1,}.[a-zA-Z]{1,}.[a-zA-Z]*");
+        if (emailRegex.test(email)) {
+            this._email = this.email;
+        } else
+            throw 'Email should match the valid format';
     }
 
     get zip() {
@@ -77,7 +91,11 @@ class ContactDetails {
     }
 
     set zip(zip) {
-        this._zip = this.zip;
+        let zipRegex = RegExp('^[0-9]{3}?(\s)[0-9]{3}$');
+        if (zipRegex.test(zip)) {
+            this._zip = this.zip;
+        } else
+            throw 'Zip should match the valid format';
     }
 
     get phoneNumber() {
@@ -85,7 +103,11 @@ class ContactDetails {
     }
 
     set phoneNumber(phoneNumber) {
-        this._phoneNumber = this.phoneNumber;
+        let phoneNumberRegex = RegExp('^[0-9]{2} [0-9]{10}$');
+        if (phoneNumberRegex.test(zip)) {
+            this._phoneNumber = this.phoneNumber;
+        } else
+            throw 'PhoneNumber should match the valid format';
     }
 
     toString() {
@@ -93,8 +115,3 @@ class ContactDetails {
             ', City: ' + this.city + ', State: ' + this.state + ', Email: ' + this.email + ', Zip: ' + this.zip + ', PhoneNumber: ' + this.phoneNumber;
     }
 }
-
-let contactDetails = new ContactDetails('Mayur', 'Zope', 'Housing', 'Pithampur',
-    'MP', 'm@gmail.com', '545454', '8686886860');
-
-console.log(contactDetails.toString());
